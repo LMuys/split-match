@@ -11,7 +11,7 @@ if (!Transform) {
 
 //Constructor logic includes Internal state logic. PatternMatch needs to consider it because it has to parse chunks that get transformed
 
-function PatternMatch(
+function PatternMatch(pattern) {
     this.pattern = pattern;
 //Switching on object mode so when stream reads sensordata it emits single pattern match.
     Transform.call(
@@ -26,7 +26,6 @@ function PatternMatch(
 // Extend the Transform class.
 
 inherits(PatternMatch, Transform);
-
 
 //Transform classes require that we implement a single method called _transform and optionally implement a method called _flush. Your assignment will implement both.
 
@@ -64,7 +63,6 @@ program
 var inputStream = fileSystem.createReadStream( "input-sensor.txt" );
 
 // Create a Pattern Matching stream that will run through the input and find matches for the given pattern at the command line - "." and ",".
-console.log('-------------------Input-------------------');
 var patternStream = inputStream.pipe(new PatternMatch(program.pattern));
 
 // Read matches from the stream.
@@ -77,6 +75,11 @@ patternStream.on('readable', function() {
 });
 
 patternStream.on('end', function() {
+    console.log('-------------------Input-------------------');
+    fileSystem.readFile('input-sensor.txt', 'utf8', function(err, data) {
+	if (err) return console.log(err);
+	console.log(data);
+	});
     console.log('-------------------Output-------------------');
     console.log(streamMatches);
 });
