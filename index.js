@@ -28,7 +28,7 @@ function PatternMatch(
 inherits(PatternMatch, Transform);
 
 
-//Transform classes require that we implement a single method call _transform and optionally implement a method called _flush. Your assignment will implement both.
+//Transform classes require that we implement a single method called _transform and optionally implement a method called _flush. Your assignment will implement both.
 
 PatternMatch.prototype._transform = function (chunk, encoding, getNextChunk){
     var data = chunk.toString();
