@@ -46,7 +46,6 @@ PatternMatch.prototype._transform = function (chunk, encoding, getNextChunk){
 	    })
 	getNextChunk();    
 }
-console.log("hello");
 
 //After stream has been read and transformed, the _flush is called. It is a great place to push values to output stream and clean up existing data
 
