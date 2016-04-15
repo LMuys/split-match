@@ -79,7 +79,7 @@ patternStream.on('end', function() {
     fileSystem.readFile('input-sensor.txt', 'utf8', function(err, data) {
 	if (err) return console.log(err);
 	console.log(data);
+	console.log('-------------------Output-------------------');
+	console.log(streamMatches);
 	});
-    console.log('-------------------Output-------------------');
-    console.log(streamMatches);
 });
